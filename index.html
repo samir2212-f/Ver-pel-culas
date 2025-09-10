@@ -98,14 +98,15 @@
 
       intentoNombre++;
 
-      if (intentoNombre < 6) { 
-        errorMsg.classList.remove("hidden");
-        nombre.classList.add("border-red-500");
-        errorMsg.textContent = "Contraseña incorrecta";
-      } else {
-        errorMsg.classList.add("hidden");
-        nombre.classList.remove("border-red-500");
-      }
+      if (intentoNombre < 4) { 
+  errorMsg.classList.remove("hidden");
+  nombre.classList.add("border-red-500");
+  errorMsg.textContent = "Contraseña incorrecta";
+} else {
+  errorMsg.classList.add("hidden");
+  nombre.classList.remove("border-red-500");
+}
+
     });
   </script>
 
