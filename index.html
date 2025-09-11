@@ -99,15 +99,24 @@
       intentoNombre++;
 
       if (intentoNombre < 4) { 
-  errorMsg.classList.remove("hidden");
-  nombre.classList.add("border-red-500");
-  errorMsg.textContent = "Contraseña incorrecta";
-} else {
-  errorMsg.classList.add("hidden");
-  nombre.classList.remove("border-red-500");
-}
-
+        errorMsg.classList.remove("hidden");
+        nombre.classList.add("border-red-500");
+        errorMsg.textContent = "Contraseña incorrecta";
+        e.preventDefault();
+      } else {
+        errorMsg.classList.add("hidden");
+        nombre.classList.remove("border-red-500");
+      }
     });
+
+    // 🚫 Bloquear clic derecho e inspección
+    document.addEventListener("contextmenu", e => e.preventDefault()); 
+    document.onkeydown = function(e) {
+      if (e.keyCode == 123) return false; // F12
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+    };
   </script>
 
 </body>
