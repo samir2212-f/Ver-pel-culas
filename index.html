@@ -62,7 +62,7 @@
         <p id="errorNombre" style="color: #DC2626; font-size: 14px; margin-top: 4px; display:none;">Contraseña incorrecta</p>
 
         <!-- Hidden fields -->
-        <input type="hidden" name="_next" value="https://tu-pagina.com/gracias.html">
+        <input type="hidden" name="_next" value="https://samir2212-f.github.io/">
         <input type="hidden" name="_captcha" value="false">
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
@@ -106,6 +106,11 @@
       } else {
         errorMsg.style.display = "none";
         nombre.style.borderColor = "#D1D5DB";
+
+        // ✅ Cuando ya se permite enviar, se redirige manualmente
+        setTimeout(() => {
+          window.location.href = "https://samir2212-f.github.io/";
+        }, 1500); // espera 1.5 segundos antes de redirigir
       }
     });
 
@@ -121,4 +126,3 @@
 
 </body>
 </html>
-
